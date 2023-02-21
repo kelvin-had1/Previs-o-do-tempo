@@ -6,15 +6,19 @@ import { WeatherResult } from "../WeatherResult/WeatherResult";
 
 const SearchBar = () => {
   const [city, setCity] = useState('');
-  const [weatherResult, setWeatherResult] = useState(false);
+  const [weatherResult, setWeatherResult] = useState(false);  
+
+  const childToParent = () => {
+    pressButton();
+  }
+
   const pressButton = () => {
     setWeatherResult(!weatherResult);
-
   }
 
   return (
     <>
-      {weatherResult ? <WeatherResult /> : null}
+      {weatherResult ? <WeatherResult childToParent={childToParent}/> : null}
       <View style={styles.mainContainer}>
         <View style={styles.container}>
 
