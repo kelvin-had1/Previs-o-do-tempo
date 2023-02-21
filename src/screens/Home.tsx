@@ -1,19 +1,19 @@
 import { View, StyleSheet } from "react-native"
-import { Header } from "../components/Header";
+import { Header } from "../components/Header/Header";
 
-function Home(): JSX.Element {
+const Home = () => {
 
     return (
         <View style={styles.container}>
-            <Header/>        
+            <Header />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {    
-      backgroundColor: '#FF8C00',
-      height: '100%',
+    container: {
+        backgroundColor: '#FF8C00',
+        height: '100%',
     }
 });
 

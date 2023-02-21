@@ -7,15 +7,18 @@ export const styles = StyleSheet.create({
         color: '#fff',
         textAlign: 'center',
         marginTop: 30,
-        
+       
     },
 
     container: {
         marginTop: 40,        
         alignItems: 'center',                
-        height: 200,
-        borderColor: "white",        
-        borderBottomWidth: 1,
+        height: 200,                       
         textAlign: 'center',
+        backgroundColor: '#FF8C00',
+        marginBottom: 20,
+        
+    
+        
     }
 });

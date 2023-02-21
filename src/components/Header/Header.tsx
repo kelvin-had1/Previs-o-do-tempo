@@ -1,12 +1,13 @@
 import { Text, View } from "react-native";
-import { SearchBar } from "../SearchBar";
+import { shadow } from "../../shared/styles/shadow";
+import { SearchBar } from "../SearchBar/SearchBar";
 import { styles } from "./styles";
 
 
-function Header(): JSX.Element {
+const Header = () => {
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>
+        <Text style={[styles.title, shadow.default]}>
             Previsão do tempo
         </Text>
         <SearchBar/>
