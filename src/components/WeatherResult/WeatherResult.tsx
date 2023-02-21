@@ -1,3 +1,4 @@
+import { AntDesign } from "@expo/vector-icons";
 import { Text, StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import { styles } from "./styles";
 
@@ -18,12 +19,18 @@ const WeatherResult = (data: props) => {
           onPress={() => data.childToParent()}
         >
 
-          <Image            
+          <Image     
+            style={styles.icon}       
             source={require('../../../assets/X.png')}
           />
         </TouchableOpacity>
       </View>
 
+      <Text style={styles.conditionsText}>20º Nublado</Text>
+      
+      <View>
+        <AntDesign name="arrowup" size={24} color="#FF8C00" />
+      </View>
     </View>
 
   )

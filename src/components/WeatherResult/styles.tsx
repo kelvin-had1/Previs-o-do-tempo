@@ -8,8 +8,20 @@ export const styles = StyleSheet.create({
     
   },
 
+  conditionsText: {
+    fontSize: 40,
+    textAlign: 'center',
+    marginTop: 20,
+    fontWeight: '400',
+  },
+
+  icon: {
+    width: 40,
+  },
+
   text: {
     fontSize: 20,
+    fontWeight: 'bold',
   },
 
   top: {
