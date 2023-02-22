@@ -1,16 +1,16 @@
-interface WeatherPropsResponse {    
-    resolvedAddress: string,            
-    description: string,
-    days: [
-        {
-            temp: number,
-            feelslikemax: number,
-            feelslikemin: number,
-            humidity: number,
-            windspeed: number,
-            datetime: Date,
-        }
-    ]
+interface Day {
+  datetime: string;
+  tempmin: number;
+  tempmax: number;
+  temp: number;
+  humidity: number;
+  conditions: string;
+  windspeed: string;
+	feelslike: number;
+}
+interface WeatherPropsResponse {
+  resolvedAddress: string;
+  days: Day[];
 }
 
 

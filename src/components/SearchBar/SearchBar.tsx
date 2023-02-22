@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Image, SafeAreaView, TextInput, TouchableOpacity, View } from "react-native";
+import { TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 import Weather from "../../api/weather";
 import { WeatherResult } from "../WeatherResult/WeatherResult";

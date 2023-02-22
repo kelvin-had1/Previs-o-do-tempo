@@ -3,34 +3,31 @@ import { Text, StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import { WeatherPropsResponse } from "../../api/weather/dto";
 import { DayResult } from "../DayResult/DayResult";
 import { styles } from "./styles";
-interface Day {
-  datetime: string;
-  tempmin: number;
-  tempmax: number;
-  temp: number;
-  humidity: number;
-  conditions: string;
-  windspeed: string;
+
+enum DayOfWeek {
+  "Domingo",
+  "Segunda",
+  "Terça",
+  "Quarta",
+  "Quinta",
+  "Sexta",
+  "Sábado",
 }
 
-interface Result {
-  resolvedAddress: string;
-  days: Day[];
-}
 interface Props {
   onClose: () => void;
   result: WeatherPropsResponse;
 }
 
-const WeatherResult = ({result, onClose: childToParent}: Props) => {
-console.log('🚀 ~ file: WeatherResult.tsx:26 ~ result:', result)
+const WeatherResult = ({ result, onClose: childToParent }: Props) => {
+  console.log('🚀 ~ file: WeatherResult.tsx:26 ~ result:', JSON.stringify(result, null, 2));
 
   return (
 
     <View style={styles.container}>
       <View style={styles.mainContainer}>
         <View style={styles.top}>
-          <Text style={styles.text}>Niterói, RJ - Brasil</Text>
+          <Text style={styles.text}>{result.resolvedAddress}</Text>
 
           <TouchableOpacity
             style={styles.button}
@@ -44,7 +41,12 @@ console.log('🚀 ~ file: WeatherResult.tsx:26 ~ result:', result)
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.conditionsText}>20º Nublado</Text>
+        <Text style={styles.conditionsText}>
+          {result.days[0].temp}º 
+          {
+            result.days[0].conditions.split(',')[0]
+          }
+        </Text>
 
         <View style={styles.dataView}>
           <View style={styles.minMaxBox}>
@@ -60,26 +62,36 @@ console.log('🚀 ~ file: WeatherResult.tsx:26 ~ result:', result)
           </View>
 
           <View style={styles.box}>
-            <Text style={styles.text}>Sensação 19º</Text>
+            <Text style={styles.text}>Sensação {result.days[0].feelslike}º</Text>
           </View>
         </View>
 
         <View style={styles.dataView}>
           <View style={styles.box}>
-            <Text style={styles.text}>Vento 18km/h</Text>
+            <Text style={styles.text}>Vento {result.days[0].windspeed}km/h</Text>
           </View>
 
           <View style={styles.box}>
-            <Text style={styles.text}>Humidade 89%</Text>
+            <Text style={styles.text}>Humidade {result.days[0].humidity}%</Text>
           </View>
         </View>
       </View>
 
       <View style={styles.secondContainer}>
-        <DayResult day="Terça" min={18} max={26}/>
-        <DayResult day="Quarta" min={18} max={26}/>
-        <DayResult day="Quinta" min={18} max={26}/>
-        <DayResult day="Sexta" min={18} max={26}/>
+        {result.days.map((day, index) => {
+          if (index > 0 && index < 5) {
+            const dayOfWeek = DayOfWeek[new Date(day.datetime).getDay()];
+            return (
+              <DayResult
+                key={index}
+                day={dayOfWeek}
+                min={day.tempmin}
+                max={day.tempmax}
+              />
+            );
+          }
+
+        })}
       </View>
 
     </View>

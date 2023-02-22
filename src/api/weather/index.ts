@@ -19,20 +19,8 @@ class Weather {
         });
         
         const weather: WeatherPropsResponse = {
-            resolvedAddress: data.resolvedAddress,
-            description: data.description,
-            days: data.days.map((day: any) => {
-                return {
-                    temp: day.temp,
-                    feelslikemax: day.feelslikemax,
-                    feelslikemin: day.feelslikemin,
-                    humidity: day.humidity,
-                    windspeed: day.windspeed,
-                    datetime: day.datetime,
-                }
-            }
-            )
-
+            resolvedAddress: data['resolvedAddress'],
+            days: data['days']
         }
 
         return weather;
