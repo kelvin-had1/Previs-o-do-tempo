@@ -1,13 +1,29 @@
 import { AntDesign } from "@expo/vector-icons";
 import { Text, StyleSheet, View, TouchableOpacity, Image } from "react-native";
+import { WeatherPropsResponse } from "../../api/weather/dto";
 import { DayResult } from "../DayResult/DayResult";
 import { styles } from "./styles";
-
-interface props {
-  childToParent: () => void;
+interface Day {
+  datetime: string;
+  tempmin: number;
+  tempmax: number;
+  temp: number;
+  humidity: number;
+  conditions: string;
+  windspeed: string;
 }
 
-const WeatherResult = (data: props) => {
+interface Result {
+  resolvedAddress: string;
+  days: Day[];
+}
+interface Props {
+  onClose: () => void;
+  result: WeatherPropsResponse;
+}
+
+const WeatherResult = ({result, onClose: childToParent}: Props) => {
+console.log('🚀 ~ file: WeatherResult.tsx:26 ~ result:', result)
 
   return (
 
@@ -18,7 +34,7 @@ const WeatherResult = (data: props) => {
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => data.childToParent()}
+            onPress={() => childToParent()}
           >
 
             <Image

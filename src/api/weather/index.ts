@@ -40,4 +40,4 @@ class Weather {
     
 }
 
-export { Weather }
+export default new Weather();

@@ -1,25 +1,29 @@
 import { useState } from "react";
 import { Button, Image, SafeAreaView, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
-import { Weather } from "../../api/weather";
+import Weather from "../../api/weather";
 import { WeatherResult } from "../WeatherResult/WeatherResult";
 import { AntDesign } from "@expo/vector-icons";
+import { useQuery } from "@tanstack/react-query";
 
 const SearchBar = () => {
   const [city, setCity] = useState('');
-  const [weatherResult, setWeatherResult] = useState(false);  
+  const [isOpen, setIsOpen] = useState(false);
+  const {data: weatherData, refetch} = useQuery(['weather'], () => Weather.getWeather(city))
 
-  const childToParent = () => {
-    pressButton();
+
+  const onClose = () => {
+    setIsOpen(false)
   }
 
   const pressButton = () => {
-    setWeatherResult(!weatherResult);
+    setIsOpen(true)
+    refetch();
   }
 
   return (
     <>
-      {weatherResult ? <WeatherResult childToParent={childToParent}/> : null}
+      {isOpen && weatherData ? <WeatherResult result={weatherData} onClose={onClose}/> : null}
       <View style={styles.mainContainer}>
         <View style={styles.container}>
 
