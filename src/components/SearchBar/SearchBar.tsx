@@ -3,6 +3,7 @@ import { Button, Image, SafeAreaView, TextInput, TouchableOpacity, View } from "
 import { styles } from "./styles";
 import { Weather } from "../../api/weather";
 import { WeatherResult } from "../WeatherResult/WeatherResult";
+import { AntDesign } from "@expo/vector-icons";
 
 const SearchBar = () => {
   const [city, setCity] = useState('');
@@ -35,10 +36,8 @@ const SearchBar = () => {
             style={styles.searchIconImage}
           >
 
-            <Image
-              style={styles.icon}
-              source={require('../../../assets/lupa.png')}
-            />
+            
+            <AntDesign name="search1" size={36} color="black" />
           </TouchableOpacity>
 
         </View>
