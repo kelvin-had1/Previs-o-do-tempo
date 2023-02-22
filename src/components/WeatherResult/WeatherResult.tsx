@@ -42,10 +42,10 @@ const WeatherResult = ({ result, onClose: childToParent }: Props) => {
         </View>
 
         <Text style={styles.conditionsText}>
-          {result.days[0].temp}º 
           {
-            result.days[0].conditions.split(',')[0]
+            `${DayOfWeek[new Date(result.days[0].datetime).getDay()]}, ${result.days[0].temp}º `
           }
+          
         </Text>
 
         <View style={styles.dataView}>
