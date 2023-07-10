@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
-import Weather from "../../api/weather";
 import { WeatherResult } from "../WeatherResult/WeatherResult";
 import { AntDesign } from "@expo/vector-icons";
 import { useQuery } from "@tanstack/react-query";
+import weather from "../../api/weather";
 
 const SearchBar = () => {
   const [city, setCity] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const {data: weatherData, refetch} = useQuery(['weather'], () => Weather.getWeather(city))
-
+  const {data: weatherData, refetch} = useQuery(['weather'], () => weather.getWeather(city),{
+    enabled: false,
+  });
 
   const onClose = () => {
     setIsOpen(false)
@@ -39,18 +40,12 @@ const SearchBar = () => {
             }
             style={styles.searchIconImage}
           >
-
             
             <AntDesign name="search1" size={36} color="black" />
           </TouchableOpacity>
-
         </View>
       </View>
     </>
-
-
-
-
   )
 }
 

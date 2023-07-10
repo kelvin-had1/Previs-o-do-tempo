@@ -1,13 +1,11 @@
 import axios from 'axios';
 import { WeatherPropsResponse } from './dto';
 
-class Weather {
+const weather = {
 
   async getWeather(locale: string): Promise<WeatherPropsResponse | null> {
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${locale}?unitGroup=metric&key=7A2NX58HTFJLM73JAPXBAH55B&contentType=json`;
 
-    console.log('=====================');
-    console.log(url);
     
     const data = await axios.get(url)
       .then((response) => {
@@ -32,4 +30,4 @@ class Weather {
 
 }
 
-export default new Weather();
+export default weather;

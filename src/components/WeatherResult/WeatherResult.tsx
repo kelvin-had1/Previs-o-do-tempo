@@ -20,7 +20,7 @@ interface Props {
 }
 
 const WeatherResult = ({ result, onClose: childToParent }: Props) => {
-  console.log('🚀 ~ file: WeatherResult.tsx:26 ~ result:', JSON.stringify(result, null, 2));
+  
 
   return (
 
